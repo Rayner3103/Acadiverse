@@ -34,14 +34,14 @@ export default function Event() {
       showAlert({
         title: "Failure",
         message: "Cannot load event",
-        onConfirm: () => {},
+        onConfirm: () => { },
       });
     } catch (e: any) {
       hideLoading();
       showAlert({
         title: "Failure",
         message: e.message,
-        onConfirm: () => {},
+        onConfirm: () => { },
       });
     }
   };
@@ -94,11 +94,13 @@ export default function Event() {
           <div>
             <h2 className="text-2xl font-bold mb-3 text-gray-800">About</h2>
             {event?.image && (
-              <img
-                src={Array.isArray(event.image) ? `${UPLOAD_URL}/${event.image[0]}` : event.image}
-                alt={event.organisation}
-                className="w-full rounded-2xl shadow-lg transition"
-              />
+              <div className="mx-auto w-full max-w-3xl overflow-hidden rounded-2xl shadow-lg bg-slate-100">
+                <img
+                  src={Array.isArray(event.image) ? `${UPLOAD_URL}/${event.image[0]}` : event.image}
+                  alt={event.organisation}
+                  className="w-full max-h-[34rem] object-cover object-center"
+                />
+              </div>
             )}
           </div>
 
@@ -145,17 +147,17 @@ export default function Event() {
           <p className="font-medium text-gray-700">
             Signup Deadline:{" "}
             <span className="font-semibold text-red-500">
-              {event?.signupDeadline?.toLocaleString("en-GB", {
+              {event?.signupDeadline ? new Date(event.signupDeadline).toLocaleDateString("en-GB", {
                 day: "2-digit",
                 month: "long",
                 year: "numeric",
-              })}
+              }) : "Unknown"}
             </span>
           </p>
 
-          {event?.origin === EventInterface.EventOrigin.WEB && (
+          {event?.origin === EventInterface.EventOrigin.WEB && event?.createdAt && (
             <p className="font-medium text-gray-700">
-              Details of this event is obtained by a bot at {event.createdDateTime.toString()}.
+              Details of this event is obtained by a bot at {new Date(event.createdAt).toLocaleString()}.
             </p>
           )}
 
@@ -173,13 +175,13 @@ export default function Event() {
       {(role === UserInterface.Role.ADMIN ||
         (role === UserInterface.Role.ORGANISER &&
           userId === event?.createdUserId)) && (
-        <Button
-          className="fixed bottom-6 right-6 z-50 rounded-full w-16 h-16 bg-gradient-to-br from-indigo-400 to-pink-500 text-white text-4xl shadow-xl hover:scale-110 hover:shadow-2xl active:scale-95 transition-all duration-300 ease-in-out"
-          onClick={() => navigate(`/edit/${eventId}`)}
-        >
-          <Pencil className="w-4 h-4" />
-        </Button>
-      )}
+          <Button
+            className="fixed bottom-6 right-6 z-50 rounded-full w-16 h-16 bg-gradient-to-br from-indigo-400 to-pink-500 text-white text-4xl shadow-xl hover:scale-110 hover:shadow-2xl active:scale-95 transition-all duration-300 ease-in-out"
+            onClick={() => navigate(`/edit/${eventId}`)}
+          >
+            <Pencil className="w-4 h-4" />
+          </Button>
+        )}
     </div>
   );
 }
