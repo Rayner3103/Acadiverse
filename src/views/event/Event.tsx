@@ -12,7 +12,7 @@ import { useAlertDialog } from "@/context/AlertDialogContext";
 import AuthContext from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 
-const UPLOAD_URL = import.meta.env.VITE_SERVER_ASSET_PATH;
+
 
 export default function Event() {
   const { eventId } = ReactRouter.useParams();
@@ -94,13 +94,11 @@ export default function Event() {
           <div>
             <h2 className="text-2xl font-bold mb-3 text-gray-800">About</h2>
             {event?.image && (
-              <div className="mx-auto w-full max-w-3xl overflow-hidden rounded-2xl shadow-lg bg-slate-100">
-                <img
-                  src={Array.isArray(event.image) ? `${UPLOAD_URL}/${event.image[0]}` : event.image}
-                  alt={event.organisation}
-                  className="w-full max-h-[34rem] object-cover object-center"
-                />
-              </div>
+              <img
+                src={event.image}
+                alt={event.organisation}
+                className="w-full rounded-2xl shadow-lg transition"
+              />
             )}
           </div>
 
