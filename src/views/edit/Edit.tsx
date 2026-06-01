@@ -22,7 +22,7 @@ import { useAlertDialog } from "@/context/AlertDialogContext";
 import { useLoading } from "@/context/OverlayContext";
 import * as UserInterface from "@/interface/user";
 
-const UPLOAD_URL = import.meta.env.VITE_SERVER_ASSET_PATH;
+
 
 type EventFormValues = {
   title: string;
@@ -191,11 +191,7 @@ export default function EditEventForm() {
 
         // Set preview image if available
         if (fetchedEvent.image) {
-          if (Array.isArray(fetchedEvent.image)) {
-            setImagePreview(`${UPLOAD_URL}/${fetchedEvent.image[0]}`);
-          } else {
-            setImagePreview(fetchedEvent.image);
-          }
+          setImagePreview(fetchedEvent.image);
         }
 
         return;
