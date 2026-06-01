@@ -19,6 +19,7 @@ import { SearchProvider } from "./context/SearchContext";
 import OrganisationHome from "./views/organisation/OrganisationHome";
 import Wait from "./views/wait/Wait";
 import Reset from "./views/reset/Reset";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 function App() {
   return (
@@ -35,12 +36,12 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/event/:eventId" element={<Event />} />
+                <Route path="/event/:eventId" element={<ErrorBoundary><Event /></ErrorBoundary>} />
                 <Route path="/edit/:eventId" element={<Edit />} />
                 <Route path="/add" element={<Add />} />
                 <Route path="/organisation" element={<OrganisationHome />} />
-                <Route path="/wait" element={<Wait/>} />
-                <Route path="/reset" element={<Reset/>} />
+                <Route path="/wait" element={<Wait />} />
+                <Route path="/reset" element={<Reset />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </SearchProvider>

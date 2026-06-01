@@ -43,7 +43,7 @@
 
    Add the following environment variable:
 
-   `VITE_API_BASE_URL=http://127.0.0.1:10000  # Flask backend URL`
+   `VITE_PUBLIC_API_URL=http://127.0.0.1:10000  # Flask backend URL`
    `VITE_SERVER_ASSET_PATH=http://127.0.0.1:10000/uploads  # Asset serve out path`
 
 4. Run the app
@@ -56,6 +56,12 @@
 
    Open your browser at `http://localhost:5173`
 
+### Local full stack note
+
+Before starting frontend/backend, run this once from workspace root to start the local DB stack:
+
+`docker compose up --build -d`
+
 ## 👥 Collaborators
 
 - [Brian Leong Jie Ren](https://www.linkedin.com/in/brian-leong-jie-ren/) (Technical Lead)
@@ -67,6 +73,10 @@
 ## 🔗 Hosted Link
 
 https://heap-2025-client.vercel.app/
+
+## 🔗 Server Repo
+
+https://github.com/Rayner3103/HEAP2025-Server/
 
 
 
